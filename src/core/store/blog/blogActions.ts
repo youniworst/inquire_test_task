@@ -1,8 +1,22 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
 import $api from "../../../api";
 import { blogActions } from "./blogSlice";
 
 export const getBlogList = () => async (dispatch: Dispatch) => {
-   $api.get("/posts").then((response: any) => dispatch(blogActions.setBlogList(response.data)));
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  $api
+    .get("/posts", config)
+    .then((response: any) => dispatch(blogActions.setBlogList(response.data)));
 };
+
+export const addPost =
+  (title: string, body: string) => async (dispatch: Dispatch) => {
+    const data = { title, body };
+    $api.post("/posts", data).then((response) => {
+      dispatch(blogActions.addBlogToList(response.data));
+    });
+  };

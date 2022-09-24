@@ -1,5 +1,5 @@
-import { FC, useState } from "react";
-import { Button, Box, Typography } from "@mui/material";
+import { FC } from "react";
+import { Box, Typography } from "@mui/material";
 import { BlogItemProps } from "./types";
 
 export const BlogItem: FC<BlogItemProps> = ({ title, body }) => {

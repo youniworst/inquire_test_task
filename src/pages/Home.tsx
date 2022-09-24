@@ -1,6 +1,12 @@
-import { Container, Typography, Grid, Box } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Grid,
+  Box,
+} from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { ModalButton, BlogItem } from "../components";
+import { ModalButton, BlogItem, BlogForm } from "../components";
+import { ADD_POST } from "../core/constants/actions";
 import { useAppDispatch, useAppSelector } from "../core/hooks";
 import { getBlogList } from "../core/store/blog/blogActions";
 
@@ -8,9 +14,11 @@ export const Home: FC = () => {
   const dispatch = useAppDispatch();
   const blogList = useAppSelector((state) => state.blog.blogList);
 
+
   useEffect(() => {
     dispatch(getBlogList());
-  }, []);
+  }, [dispatch]);
+
 
   const blogContainer =
     blogList.length > 0 ? (
@@ -46,6 +54,23 @@ export const Home: FC = () => {
         >
           Blog
         </Typography>
+        <Box
+          style={{
+            minHeight: "100px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "100px",
+          }}
+        >
+          <Typography variant="h4">
+            Hi author! Lets create a new post
+          </Typography>
+          <ModalButton buttonText="Create new post">
+            <BlogForm action={ADD_POST}/>
+          </ModalButton>
+        </Box>
         {blogContainer}
       </Container>
     </>

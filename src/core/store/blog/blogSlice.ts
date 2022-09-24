@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export const initialState = {
-    blogList: []
+    blogList: [] as any
 };
 
 export const blogSlice = createSlice({
@@ -10,6 +10,9 @@ export const blogSlice = createSlice({
   reducers: {
         setBlogList(state,action: PayloadAction<[]>) {
             state.blogList = action.payload
+        },
+        addBlogToList(state,action: PayloadAction<any>) {
+          state.blogList = [...state.blogList, action.payload]
         }
   },
 });
