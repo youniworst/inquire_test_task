@@ -7,7 +7,7 @@ export const ModalButton: FC<ModalButtonProps> = ({ buttonText, children }) => {
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = () => {
+  const handleClose = (e: any) => {
     setOpen(false);
   };
   const style = {
@@ -33,7 +33,9 @@ export const ModalButton: FC<ModalButtonProps> = ({ buttonText, children }) => {
         {buttonText}
       </Button>
       <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>{children}</Box>
+        <Box sx={style}>
+          {children}
+        </Box>
       </Modal>
     </>
   );

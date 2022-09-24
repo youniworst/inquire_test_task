@@ -8,7 +8,7 @@ import { FC, useEffect } from "react";
 import { ModalButton, BlogItem, BlogForm } from "../components";
 import { ADD_POST } from "../core/constants/actions";
 import { useAppDispatch, useAppSelector } from "../core/hooks";
-import { getBlogList } from "../core/store/blog/blogActions";
+import { setBlogList } from "../core/store/blog/blogActions";
 
 export const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +16,7 @@ export const Home: FC = () => {
 
 
   useEffect(() => {
-    dispatch(getBlogList());
+    dispatch(setBlogList());
   }, [dispatch]);
 
 

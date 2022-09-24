@@ -11,13 +11,19 @@ export const blogSlice = createSlice({
     setBlogList(state, action: PayloadAction<[]>) {
       state.blogList = action.payload;
     },
-    addPostToList(state, action: PayloadAction<any>) {
+    addPost(state, action: PayloadAction<any>) {
       state.blogList = [...state.blogList, action.payload];
     },
     deletePost(state, action: PayloadAction<number>) {
       state.blogList = state.blogList.filter(
         (item: any) => item.id !== action.payload
       );
+    },
+    updatePost(state, action: PayloadAction<any>) {
+      state.blogList = [
+        ...state.blogList.filter((item: any) => item.id !== action.payload.id),
+        action.payload,
+      ];
     },
   },
 });

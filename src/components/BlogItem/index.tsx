@@ -14,14 +14,45 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
   };
   return (
     <>
-      <Box>
-        <Typography variant="h6">{title}</Typography>
-        <Typography variant="body1">{body}</Typography>
+      <Box
+        sx={{
+          minHeight: "160px",
+          padding: "20px",
+          border: "1px solid blue",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}
+      >
+        <Typography
+          sx={{
+            textAlign: "center",
+          }}
+          variant="h6"
+        >
+          {title}
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            padding: "10px",
+          }}
+        >
+          {body}
+        </Typography>
 
-        <Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+          }}
+        >
           <Button onClick={handleClickDelete} variant="contained">
             Delete
           </Button>
+          <ModalButton buttonText="Update">
+            <BlogForm bodyValue={body} titleValue={title} postId={id} action={UPDATE_POST} />
+          </ModalButton>
         </Box>
       </Box>
     </>
