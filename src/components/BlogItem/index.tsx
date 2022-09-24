@@ -5,6 +5,7 @@ import { deletePost } from "../../core/store/blog/blogActions";
 import { useAppDispatch } from "../../core/hooks";
 import { ModalButton } from "../ModalButton";
 import { BlogForm } from "../BlogForm";
+import { Link, useNavigate } from "react-router-dom";
 import { UPDATE_POST } from "../../core/constants/actions";
 
 export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
@@ -12,16 +13,17 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
   const handleClickDelete = () => {
     dispatch(deletePost(id));
   };
+
   return (
     <>
       <Box
         sx={{
-          minHeight: "160px",
+          height: "400px",
           padding: "20px",
           border: "1px solid blue",
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between'
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
         }}
       >
         <Typography
@@ -35,12 +37,24 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
         <Typography
           variant="body1"
           sx={{
-            padding: "10px",
+            padding: "12px",
+            overflow: "hidden",
+            height: "200px",
+            textAlign: "justify",
+            textOverflow: "ellipsis",
           }}
         >
           {body}
         </Typography>
-
+        <Link
+          style={{
+            display: "block",
+            padding: "10px",
+          }}
+          to={`/${id}`}
+        >
+          Read full post
+        </Link>
         <Box
           sx={{
             display: "flex",
@@ -51,7 +65,12 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
             Delete
           </Button>
           <ModalButton buttonText="Update">
-            <BlogForm bodyValue={body} titleValue={title} postId={id} action={UPDATE_POST} />
+            <BlogForm
+              bodyValue={body}
+              titleValue={title}
+              postId={id}
+              action={UPDATE_POST}
+            />
           </ModalButton>
         </Box>
       </Box>

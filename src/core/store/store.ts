@@ -1,8 +1,10 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import {blogSlice} from './blog/blogSlice'
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { blogSlice } from "./blog/blogSlice";
+import { postSlice } from "./post/postSlice";
 export const store = configureStore({
   reducer: {
-    blog: blogSlice.reducer
+    blog: blogSlice.reducer,
+    post: postSlice.reducer,
   },
 });
 
