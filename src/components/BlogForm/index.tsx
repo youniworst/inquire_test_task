@@ -1,7 +1,7 @@
 import { Button, Box, TextField, Typography } from "@mui/material";
 import { TextareaAutosize } from "@mui/base";
 import { FC, useState } from "react";
-import { ADD_POST } from "../../core/constants/actions";
+import { ADD_POST, UPDATE_POST } from "../../core/constants/actions";
 import { useAppDispatch } from "../../core/hooks";
 import { addPost } from "../../core/store/blog/blogActions";
 import { FormProps } from "./types";
@@ -22,6 +22,7 @@ export const BlogForm: FC<FormProps> = ({ action }) => {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (action === ADD_POST) dispatch(addPost(title, body));
+    if(action === UPDATE_POST) {}
   };
   return (
     <>

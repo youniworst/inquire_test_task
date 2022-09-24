@@ -4,7 +4,7 @@ import {
   Grid,
   Box,
 } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { ModalButton, BlogItem, BlogForm } from "../components";
 import { ADD_POST } from "../core/constants/actions";
 import { useAppDispatch, useAppSelector } from "../core/hooks";
@@ -26,7 +26,7 @@ export const Home: FC = () => {
         {blogList.map((blogItem: any) => {
           return (
             <Grid item xs={3} sm={3} md={3} key={blogItem.id}>
-              <BlogItem title={blogItem.title} body={blogItem.body} />
+              <BlogItem title={blogItem.title} body={blogItem.body} id={blogItem.id} />
             </Grid>
           );
         })}
