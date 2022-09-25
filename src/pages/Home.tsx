@@ -9,6 +9,7 @@ import { ModalButton, BlogItem, BlogForm } from "../components";
 import { ADD_POST } from "../core/constants/actions";
 import { useAppDispatch, useAppSelector } from "../core/hooks";
 import { setBlogList } from "../core/store/blog/blogActions";
+import { IBlogItem } from "../core/globalTypes";
 
 export const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ export const Home: FC = () => {
   const blogContainer =
     blogList.length > 0 ? (
       <Grid container spacing={{ xs: 2 }} columns={12}>
-        {blogList.map((blogItem: any) => {
+        {blogList.map((blogItem: IBlogItem) => {
           return (
             <Grid item xs={3} sm={3} md={3} key={blogItem.id}>
               <BlogItem title={blogItem.title} body={blogItem.body} id={blogItem.id} />

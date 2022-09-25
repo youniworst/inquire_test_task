@@ -1,6 +1,6 @@
 import { Button, Box, TextField, Typography } from "@mui/material";
 import { TextareaAutosize } from "@mui/base";
-import { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { ADD_POST, UPDATE_POST } from "../../core/constants/actions";
 import { useAppDispatch } from "../../core/hooks";
 import { addPost, updatePost } from "../../core/store/blog/blogActions";
@@ -12,25 +12,25 @@ export const BlogForm: FC<FormProps> = ({
   titleValue = "",
   postId,
 }) => {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     setBody(bodyValue);
     setTitle(titleValue);
-  }, []);
+  }, [bodyValue, titleValue]);
 
-  const handleTitleChange = (e: any) => {
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
-  const handleBodyChange = (e: any) => {
+  const handleBodyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBody(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     if (action === ADD_POST) dispatch(addPost(title, body));
     if (action === UPDATE_POST) {
       dispatch(updatePost(title, body, postId as number));

@@ -3,11 +3,11 @@ import { ModalButtonProps } from "./types";
 import { Modal, Button, Box } from "@mui/material";
 
 export const ModalButton: FC<ModalButtonProps> = ({ buttonText, children }) => {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const handleOpen = (e: React.MouseEvent) => {
     setOpen(true);
   };
-  const handleClose = (e: any) => {
+  const handleClose = (e: React.MouseEvent) => {
     setOpen(false);
   };
   const style = {

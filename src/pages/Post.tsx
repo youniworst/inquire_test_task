@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Box, Container, Typography } from "@mui/material";
 import { getPostData } from "../core/store/post/postActions";
 import { useAppDispatch, useAppSelector } from "../core/hooks";
+import { IComment } from "../core/globalTypes";
 
 export const Post: FC = () => {
   const { id } = useParams();
@@ -10,8 +11,8 @@ export const Post: FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getPostData(Number(id)));
-  }, [id]);
-  const commentsList = comments.map((item: any) => {
+  }, [dispatch, id]);
+  const commentsList = comments.map((item: IComment) => {
     return (
       <Typography
         sx={{

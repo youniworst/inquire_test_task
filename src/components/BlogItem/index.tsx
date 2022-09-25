@@ -5,12 +5,12 @@ import { deletePost } from "../../core/store/blog/blogActions";
 import { useAppDispatch } from "../../core/hooks";
 import { ModalButton } from "../ModalButton";
 import { BlogForm } from "../BlogForm";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UPDATE_POST } from "../../core/constants/actions";
 
 export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
   const dispatch = useAppDispatch();
-  const handleClickDelete = () => {
+  const handleClickDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(deletePost(id));
   };
 
@@ -28,6 +28,8 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
       >
         <Typography
           sx={{
+            height: '64px',
+            overflow: 'hidden',
             textAlign: "center",
           }}
           variant="h6"
