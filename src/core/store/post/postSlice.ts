@@ -17,6 +17,9 @@ export const postSlice = createSlice({
       state.body = action.payload.body;
       state.comments = action.payload.comments;
     },
+    addComment(state,action: PayloadAction<IComment>) {
+      state.comments = [...state.comments, action.payload]
+    }
   },
 });
 
