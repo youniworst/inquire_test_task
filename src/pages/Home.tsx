@@ -1,11 +1,6 @@
-import {
-  Container,
-  Typography,
-  Grid,
-  Box,
-} from "@mui/material";
+import { Container, Typography, Grid, Box } from "@mui/material";
 import { FC, useEffect } from "react";
-import { ModalButton, BlogItem, BlogForm } from "../components";
+import { BlogFormModal, BlogItem } from "../components";
 import { ADD_POST } from "../core/constants/actions";
 import { useAppDispatch, useAppSelector } from "../core/hooks";
 import { setBlogList } from "../core/store/blog/blogActions";
@@ -15,11 +10,9 @@ export const Home: FC = () => {
   const dispatch = useAppDispatch();
   const blogList = useAppSelector((state) => state.blog.blogList);
 
-
   useEffect(() => {
     dispatch(setBlogList());
   }, [dispatch]);
-
 
   const blogContainer =
     blogList.length > 0 ? (
@@ -27,7 +20,11 @@ export const Home: FC = () => {
         {blogList.map((blogItem: IBlogItem) => {
           return (
             <Grid item xs={3} sm={3} md={3} key={blogItem.id}>
-              <BlogItem title={blogItem.title} body={blogItem.body} id={blogItem.id} />
+              <BlogItem
+                title={blogItem.title}
+                body={blogItem.body}
+                id={blogItem.id}
+              />
             </Grid>
           );
         })}
@@ -68,9 +65,7 @@ export const Home: FC = () => {
           <Typography variant="h4">
             Hi author! Lets create a new post
           </Typography>
-          <ModalButton buttonText="Create new post">
-            <BlogForm action={ADD_POST}/>
-          </ModalButton>
+          <BlogFormModal action={ADD_POST} buttonText="Create new post" />
         </Box>
         {blogContainer}
       </Container>

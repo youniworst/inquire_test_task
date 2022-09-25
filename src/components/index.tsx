@@ -1,5 +1,5 @@
-export * from "./ModalButton";
+export * from "./BlogFormModal";
 export * from "./BlogItem";
-export * from "./BlogForm";
+export * from "./BlogFormModal";
 export * from "./CommentForm";
 export * from "./CommentItem";

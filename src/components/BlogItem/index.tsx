@@ -3,8 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import { BlogItemProps } from "./types";
 import { deletePost } from "../../core/store/blog/blogActions";
 import { useAppDispatch } from "../../core/hooks";
-import { ModalButton } from "../ModalButton";
-import { BlogForm } from "../BlogForm";
+import { BlogFormModal } from "../BlogFormModal";
 import { Link } from "react-router-dom";
 import { UPDATE_POST } from "../../core/constants/actions";
 
@@ -28,8 +27,8 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
       >
         <Typography
           sx={{
-            height: '64px',
-            overflow: 'hidden',
+            height: "64px",
+            overflow: "hidden",
             textAlign: "center",
           }}
           variant="h6"
@@ -66,14 +65,13 @@ export const BlogItem: FC<BlogItemProps> = ({ title, body, id }) => {
           <Button onClick={handleClickDelete} variant="contained">
             Delete
           </Button>
-          <ModalButton buttonText="Update">
-            <BlogForm
-              bodyValue={body}
-              titleValue={title}
-              postId={id}
-              action={UPDATE_POST}
-            />
-          </ModalButton>
+          <BlogFormModal
+            bodyValue={body}
+            titleValue={title}
+            postId={id}
+            action={UPDATE_POST}
+            buttonText="Update"
+          />
         </Box>
       </Box>
     </>

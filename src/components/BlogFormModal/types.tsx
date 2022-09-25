@@ -5,4 +5,5 @@ export type FormProps = {
   bodyValue?: string;
   titleValue?: string;
   postId?: number;
+  buttonText: string;
 };
