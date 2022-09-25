@@ -15,6 +15,7 @@ export const CommentForm: FC<CommentFormProps> = ({ postId }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(addComment(postId, body));
+    setBody("");
   };
   return (
     <>
